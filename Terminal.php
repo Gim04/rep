@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
 class Terminal extends Model
 {
@@ -28,9 +27,8 @@ class Terminal extends Model
         'description' 
     ];
 
-    public function computer(): MorphToMany
-    {
-        return $this->morphedByMany(Terminal::class, 'has');
+    public function computer(){
+        return $this->belongsToMany(Terminal::class, 'has', 'belong_id', 'computer_id');
     }
     public function shelves(){
         return $this->belongsTo(shelf::class, 'position_id', 'id');

@@ -47,9 +47,21 @@ class Computer extends Model
     public function images(){
         return $this->hasMany(issue::class, 'image_id', 'id');
     }
-    public function mice(): MorphToMany
+    public function terminals()
     {
-        return $this->morphedByMany(Mouse::class, 'has');
+        return $this->belongsToMany(Mouse::class, 'has', 'computer_id', 'belong_id');
+    }
+    public function mice()
+    {
+        return $this->belongsToMany(Mouse::class, 'has', 'computer_id', 'belong_id');
+    }
+    public function peripherals()
+    {
+        return $this->belongsToMany(Mouse::class, 'has', 'computer_id', 'belong_id');
+    }
+    public function joysticks()
+    {
+        return $this->belongsToMany(Mouse::class, 'has', 'computer_id', 'belong_id');
     }
 
 }

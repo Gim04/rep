@@ -24,9 +24,8 @@ class Peripheral extends Model
         'description' 
     ];
 
-    public function computer(): MorphToMany
-    {
-        return $this->morphedByMany(Peripheral::class, 'has');
+    public function computer(){
+        return $this->belongsToMany(Peripheral::class, 'has', 'belong_id', 'computer_id');
     }
     public function shelves(){
         return $this->belongsTo(shelf::class, 'position_id', 'id');
